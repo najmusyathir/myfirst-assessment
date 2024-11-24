@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --grey: #efefef;
+  --hover: #e2e2e2;
+
+  --text: #797979;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --text: #ededed;
+    --hover: #393939;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--foreground);
+  transition: 250ms ease-in-out;
+
+
+  .img {
+    padding: 1px 0 6px 0;
+    background: var(--foreground);
+    height: 32px;
+    width: 32px;
+    border-radius: 80px;
+    border: 1px solid var(--background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  h5 {
+    color: var(--text) !important;
+  }
+  h6{
+    font-size: 0.85rem;
+    color: #828282;
+    span{
+      font-style: italic;
+    }
+  }
+
+  p{
+    max-height: 70px;
+    overflow-y: hidden;
+    font-size: 0.85rem;
+    padding: 0.5rem;
+    border: 1px solid #0002;
+    &:focus{
+      outline: 1px solid var(--text);
+    }
+  }
+
+  &:hover{
+    cursor: pointer;
+    background: var(--hover);
+  }
+}
+
+.item {
+  height: min-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  background: var(--grey);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #0002;
+  transition: 200ms ease-in-out;
+
+  label{
+    color: #393939;
+    max-width: 80%;
+    &:hover{
+    cursor: pointer;
+    scrollbar-width: 1px;
+  }}
+
+  &:hover{
+    border: 1px solid #0007;
+  }
+}
+
+input[type='checkbox'] {
+  width: 1.3em;
+  height: 1.3em;
+  padding: 2px;
+  background-color: white;
+  border-radius: 50% !important;
+  vertical-align: middle;
+  border: 2px solid #ddd;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px white;
+  margin:0px 5px;
+
+  &:checked {
+    background-color: gray;
+  }
+}
+
+.dlt{
+  min-height: 58px;
+  padding: 16px 10px;
+  color: #000;
+  border-left: 1px solid #0001;
+  transition: 200ms ease-in-out;
+
+  &:hover{
+    cursor: pointer;
+    scale: 1.2;
+    margin-right: 2px;
+    *{
+      color: red !important;
+    }
+  }
+}
+
+.th{
+  width: 80%;
+  min-width: 20px;
+  min-height: 1px;
+  background: linear-gradient(90deg, #ffffff 0%, rgb(75, 75, 75) 20%, rgb(75,75,75) 80%, rgba(255,255,255,1) 100%);;
+}
+
+input[type='text']{
+  color: #000;
+}
+

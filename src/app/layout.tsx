@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import "@/globals.css";
+import Image from "next/image";
+import Link from "next/link";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "../fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "../fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
@@ -26,10 +28,55 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen flex flex-col justify-between`}>
+        <main className="flex-1 p-8 overflow-y-auto">{children}</main>
+
+        <footer className="row-start-3 flex gap-6 px-8 pb-8 flex-wrap items-center justify-center ">
+          <Link
+            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+           href={'/'}
+            rel="noopener noreferrer"
+          >
+        <Image
+              aria-hidden
+              src="/window.svg"
+              alt="Window icon"
+              width={16}
+              height={16}
+            />
+            Home
+          </Link>
+          <Link
+            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+            href="/blogs"
+            rel="noopener noreferrer"
+          >
+           <Image
+              aria-hidden
+              src="/file.svg"
+              alt="File icon"
+              width={16}
+              height={16}
+            />
+            Qs1
+          </Link>
+          <Link
+            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+            href="/todo-app/all"
+            rel="noopener noreferrer"
+          >
+          <Image
+              aria-hidden
+              src="/file.svg"
+              alt="File icon"
+              width={16}
+              height={16}
+            />
+            Qs2 
+          </Link>
+        </footer>
       </body>
+
     </html>
   );
 }
