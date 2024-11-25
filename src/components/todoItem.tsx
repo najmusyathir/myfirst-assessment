@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { updateTodoStatus, deleteTodo } from "@/lib/api";
+import { Todo } from '@/lib/api';
 
-const TodoItem = ({ todo }) => {
+const TodoItem = ({ todo } : {todo : Todo}) => {
   const handleCheckboxChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const newStatus = e.target.checked;
     await updateTodoStatus(todo.id, newStatus);

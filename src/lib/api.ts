@@ -1,16 +1,27 @@
 import { db } from "@/lib/firebaseConfig";
 import { collection, onSnapshot, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
-export const fetchTodos = (setTodos: React.Dispatch<React.SetStateAction<unknown[]>>) => {
+export interface Todo{
+  id: string;
+  name: string;
+  status: boolean;
+}
+
+export const fetchTodos = (setTodos: React.Dispatch<React.SetStateAction<Todo[]>>) => {
   const todoCollection = collection(db, "todo");
 
   const unsubscribe = onSnapshot(
     todoCollection,
     (snapshot) => {
-      const todosData = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
+      const todosData: Todo[] = snapshot.docs.map((doc) => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          name: typeof data.name === "string" ? data.name : "Untitled", // Default name
+          status: typeof data.status === "boolean" ? data.status : false, // Default status
+        };
+      });
+
       setTodos(todosData);
     },
     (error) => {
