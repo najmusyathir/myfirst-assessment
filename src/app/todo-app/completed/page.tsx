@@ -2,19 +2,17 @@
 import { useState, useEffect } from "react";
 import { fetchTodos, addTodo } from "@/lib/api";
 import TodoItem from "@/components/todoItem";
+import { Todo } from '@/lib/api';
 
 export default function Blogs() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
   const [newTask, setNewTask] = useState("");
-
 
   useEffect(() => {
     const unsubscribe = fetchTodos(setTodos);
     return () => unsubscribe();
   }, []);
 
-  
-  //
   const AddTodo = async (e: React.FormEvent) => {
     e.preventDefault();
     if (newTask.trim() === "") return;
