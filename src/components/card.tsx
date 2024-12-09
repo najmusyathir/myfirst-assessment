@@ -1,9 +1,10 @@
 import Image from "next/image";
+import { Timestamp } from "firebase/firestore"; 
 
 interface CardProps {
     title: string;
     author: string;
-    date: Date;
+    date: Timestamp;
     description: string;
   }
 
@@ -25,8 +26,8 @@ export default function Card({ title, date, author, description }: CardProps) {
                     <div className="flex flex-1 gap-5 justify-between">
                       <h6 className="text-nowrap">Author: <span>{author}</span></h6>
                       <h6 className="text-right w-full italic">
-                          {date.toLocaleDateString()}
-                        </h6>
+                      {date?.toDate().toLocaleDateString()}
+                      </h6>
                     </div>
                   </div>
                 </div>
