@@ -1,0 +1,29 @@
+<svg id='Navigation_Left_Circle_1_1_32' width='32' height='32' viewBox='0 0 32 32'
+    xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+    <rect width='32' height='32' stroke='none' fill='#000000' opacity='0' />
+    <g transform="matrix(1.17 0 0 1.17 16 16)">
+        <g style="">
+            <g transform="matrix(1 0 0 1 0.14 0.14)">
+                <path
+                    style="stroke: rgb(0,0,0); stroke-width: 1.2820512820512822; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;"
+                    transform=" translate(-12, -12)"
+                    d="M 1 11.998 C 1 18.073132248138727 5.924867751861272 22.997999999999998 12 22.997999999999998 C 18.07513224813873 22.997999999999998 23 18.073132248138727 23 11.998 C 23 5.922867751861271 18.07513224813873 0.9979999999999993 12 0.9979999999999993 C 5.924867751861271 0.9979999999999993 1 5.922867751861269 1 11.997999999999998 Z"
+                    stroke-linecap="round" />
+            </g>
+
+            <g transform="matrix(1 0 0 1 -0.36 0.14)">
+                <path
+                    style="stroke: rgb(0,0,0); stroke-width: 1.2820512820512822; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;"
+                    transform=" translate(-11.5, -12)" d="M 18 11.998 L 5 11.998"
+                    stroke-linecap="round" />
+            </g>
+
+            <g transform="matrix(1 0 0 1 -4.61 0.14)">
+                <path
+                    style="stroke: rgb(0,0,0); stroke-width: 1.2820512820512822; stroke-dasharray: none; stroke-linecap: round; stroke-dashoffset: 0; stroke-linejoin: round; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;"
+                    transform=" translate(-7.25, -12)" d="M 9.5 16.498 L 5 11.998 L 9.5 7.498"
+                    stroke-linecap="round" />
+            </g>
+        </g>
+    </g>
+</svg>
