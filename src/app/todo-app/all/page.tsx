@@ -53,9 +53,9 @@ export default function Blogs() {
     <div className="items-center justify-items-center h-full w-auto pt-8 gap-16">
       <h2 className="text-3xl font-bold py-3 w-full text-center">All tasks</h2>
       <div className="item">
-        <form className="flex w-full" onSubmit={AddTodo}>
-          <input type="text" id="input-add" className="text-input p-3 w-full outline-0" style={{background: "none"}} placeholder="Add a task" onChange={(e) => setNewTask(e.target.value)}/>
-          <input type="submit" className="w-min dlt" value="Add"/>
+        <form className="flex flex-row w-full gap-3" onSubmit={AddTodo}>
+          <input type="text" id="input-add" className="text-input flex-1" style={{background: "none"}} placeholder="Add a task" onChange={(e) => setNewTask(e.target.value)}/>
+          <input type="submit" className="w-min btn" value="Add"/>
         </form>
       </div>
       <div className="th my-5"></div>

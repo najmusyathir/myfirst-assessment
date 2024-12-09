@@ -1,25 +1,41 @@
 import Image from "next/image";
 import { updateTodoStatus, updateTodoName, deleteTodo } from "@/lib/api";
 import { Todo } from '@/lib/api';
+import { useState } from "react";
 
 const TodoItem = ({ todo } : {todo : Todo}) => {
+
+  const [saving, setSaving] = useState<boolean>(false);
+  
+
   const handleCheckboxChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const newStatus = e.target.checked;
     await updateTodoStatus(todo.id, newStatus);
   };
 
-  const handleNameChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newName = e.target.value;
-    await updateTodoName(todo.id, newName);
+  const handleNameSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setSaving(true);
+    e.preventDefault();
+    const input = e.currentTarget.elements.namedItem("todoName") as HTMLInputElement;
+    if (input) {
+      await updateTodoName(todo.id, input.value);
+      setSaving(false)
+    }
   };
 
-  // Handle delete button click
-  const handleDeleteClick = async () => {
+  const handleDeleteButton = async () => {
     await deleteTodo(todo.id);
   };
 
   return (
     <div key={todo.id} className="item">
+
+      <div className={`${saving? 'fixed' : 'hidden'} top-0 left-0 h-screen w-screen bg-[#0008] flex items-center justify-center`}>
+        <p className="py-1 px-3 bg-[#ffff] text-center text-gray-800 rounded-md">
+          saving..
+        </p>
+      </div>
+
       <div className="px-2 flex-1 flex items-center">
 
         <input
@@ -29,30 +45,40 @@ const TodoItem = ({ todo } : {todo : Todo}) => {
           onChange={handleCheckboxChange}
         />
 
-
-
-        <form>
-          <input className={` ${todo.status ? "text-gray-500 line-through" : ""} flex-1 overflow-x-auto`}
-          type="text" value={todo.name.replace(/"/g, "").trim()}
-          onChange={handleNameChange}
-          />
-
-          <input type="submit" value={`Here`}
-                />
-        </form>
+      <form className="flex gap-2 w-full" onSubmit={handleNameSubmit}>
+        <input
+          name="todoName"
+          className={`flex-1 ${todo.status ? "text-gray-500 line-through" : ""} flex-1 overflow-x-auto`}
+          type="text"
+          defaultValue={todo.name.replace(/"/g, "").trim()}
+        />
+        <button type="submit" className="btn">
+          <div style={{ width: '14px', height: '14px' }}>
+          <Image
+              aria-hidden
+              src="/save.svg"
+              alt="Delete icon"
+              width={14}
+              height={14}
+            />
+          </div>
+        </button>
+      </form>
 
 
       </div>
       <div className="flex items-center">
-        <div className="dlt flex items-center" onClick={handleDeleteClick}>
-          <Image
-            aria-hidden
-            src="/cancel.svg"
-            alt="Delete icon"
-            width={14}
-            height={14}
-          />
-        </div>
+        <button className="btn flex items-center" onClick={handleDeleteButton}>
+        <div style={{ width: '14px', height: '14px' }}>
+            <Image
+              aria-hidden
+              src="/cancel.svg"
+              alt="Delete icon"
+              width={14}
+              height={14}
+            />
+          </div>
+        </button>
       </div>
     </div>
   );
