@@ -14,10 +14,12 @@ export default function Blogs() {
   useEffect(() => {
     const tryFetch = async () => {
       try {
-        setTodos(await fetchTodos());
-        setLoading(false);
+        const fetchedTodos = await fetchTodos();
+        setTodos(fetchedTodos);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
     tryFetch();

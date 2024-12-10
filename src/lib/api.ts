@@ -38,31 +38,40 @@ export async function fetchBlogs(): Promise<Blog[]> {
 
 }
 
-export async function fetchBlog(id :string): Promise<Blog> {
-  const snapshot = await getDocs(collection(db, blog_db));
- 
-  return snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data(),
-  })).find(doc => doc.id === id) as Blog;
+export async function getStaticProps() {
+  const blogs : Blog[] = await fetchBlogs();
+
+  return {
+    props: {
+      blogs,
+    },
+  };
 }
 
+// export async function fetchBlog(id :string): Promise<Blog> {
+//   const snapshot = await getDocs(collection(db, blog_db));
+ 
+//   return snapshot.docs.map((doc) => ({
+//     id: doc.id,
+//     ...doc.data(),
+//   })).find(doc => doc.id === id) as Blog;
+// }
+
 // ====================== [ To-Do App Related API ] ===================================//
-const todo_db = "todo"
+const todo_db = "todo";
 
 export async function fetchTodos(): Promise<Todo[]> {
   const snapshot = await getDocs(collection(db, todo_db));
- 
+
   return snapshot.docs.map((doc) => ({
     id: doc.id,
     ...doc.data(),
   })) as Todo[];
-
-}
+};
 
 export const addTodo = async (taskName: string) => {
   try {
-    const todoCollection = collection(db, "todo");
+    const todoCollection = collection(db, todo_db);
     await addDoc(todoCollection, {
       name: taskName,
       status: false,
@@ -73,11 +82,9 @@ export const addTodo = async (taskName: string) => {
 };
 
 export const updateTodoStatus = async (id: string, status: boolean) => {
-  const todoDoc = doc(db, "todo", id);
+  const todoDoc = doc(db, todo_db, id);
   try {
-    await updateDoc(todoDoc, {
-      status: status,
-    });
+    await updateDoc(todoDoc, { status });
     console.log("Todo status updated!");
   } catch (error) {
     console.error("Error updating todo status: ", error);
@@ -85,20 +92,17 @@ export const updateTodoStatus = async (id: string, status: boolean) => {
 };
 
 export const updateTodoName = async (id: string, name: string) => {
-  const todoDoc = doc(db, "todo", id);
+  const todoDoc = doc(db, todo_db, id);
   try {
-    await updateDoc(todoDoc, {
-      name: name,
-    });
-    console.log("Todo string updated!");
+    await updateDoc(todoDoc, { name });
+    console.log("Todo name updated!");
   } catch (error) {
-    console.error("Error updating todo status: ", error);
+    console.error("Error updating todo name: ", error);
   }
 };
 
-
 export const deleteTodo = async (id: string) => {
-  const todoDoc = doc(db, "todo", id);
+  const todoDoc = doc(db, todo_db, id);
   try {
     await deleteDoc(todoDoc);
     console.log("Todo deleted successfully!");
