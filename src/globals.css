@@ -131,14 +131,20 @@ input[type='checkbox'] {
 
 .btn {
   color: #000;
-  border: 1px solid #0003;
+  border: 1px solid #0000;
   transition: 200ms ease-in-out;
   padding: 10px;
   border-radius: 0.3rem;
+  scale: 1.1;
+  transition: 300ms ease-in-out;
+
+  &:hover{
+  border: 1px solid #0003;
+  }
 
   &:hover{
     cursor: pointer;
-    background: #0002;
+    background: #0001;
     overflow: hidden;
     img{
       scale: 1.1;
@@ -155,7 +161,7 @@ input[type='checkbox'] {
 }
 
 input[type='text']{
-  padding: 5px;
+  padding: 5px 10px;
   color: #000;
   background: none;
   border-radius: 0.25rem;

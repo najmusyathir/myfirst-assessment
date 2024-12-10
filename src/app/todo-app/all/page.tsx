@@ -12,18 +12,16 @@ export default function Blogs() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    
     const tryFetch = async () => {
-      try{
+      try {
         setTodos(await fetchTodos());
         setLoading(false);
-      }
-       catch (error) {
+      } catch (error) {
         console.log(error);
-       }
-    }
+      }
+    };
     tryFetch();
-  });
+  }, []);
 
 
   const AddTodo = async (e: React.FormEvent) => {

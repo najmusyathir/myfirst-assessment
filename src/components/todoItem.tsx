@@ -10,7 +10,9 @@ const TodoItem = ({ todo } : {todo : Todo}) => {
 
   const handleCheckboxChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const newStatus = e.target.checked;
+    setSaving(true);
     await updateTodoStatus(todo.id, newStatus);
+    setSaving(false);
   };
 
   const handleNameSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

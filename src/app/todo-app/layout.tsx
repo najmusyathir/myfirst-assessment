@@ -20,7 +20,7 @@ export default function BlogLayout({ children }: BlogLayoutProps) {
         <div className='hfull bg-slate-50' style={{width:`2px`, height:`100%`}}></div>
 
         <Link className="text-gray-800 dark:hover:text-gray-300 min-w-20 text-nowrap border border-solid flex-1s dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-        href="/todo-app/completed" rel="noopener noreferrer" > Done </Link>
+        href="/todo-app/completed" rel="noopener noreferrer" > Complete </Link>
 
         </div>
     </div>
