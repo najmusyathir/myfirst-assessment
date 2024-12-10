@@ -10,20 +10,23 @@ export default function Blogs() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
-    const tryFetch = async () => {
-      try{
-        setTodos(await fetchTodos());
-        setLoading(false);
-      }
-       catch (error) {
-        console.log(error);
-       }
+  const tryFetch = async () => {
+    try{
+      setTodos(await fetchTodos());
+      setLoading(false);
     }
+     catch (error) {
+      console.log(error);
+     }
+  }
+
+  useEffect(() => {
     tryFetch();
-  });
+  }, []);
 
-
+  const handleAction = async () => {
+    await tryFetch();
+  };
 
   if (loading){
     return (
@@ -45,7 +48,7 @@ export default function Blogs() {
               <div>No Task</div>
             ) : (
               todos.filter((todo) => todo.status === true).map((todo) => (
-                  <TodoItem key={todo.id} todo={todo} />
+                  <TodoItem key={todo.id} todo={todo} onAction={handleAction}  />
               ))
             )}
           </div>

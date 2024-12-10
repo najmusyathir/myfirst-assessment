@@ -3,14 +3,17 @@ import { updateTodoStatus, updateTodoName, deleteTodo } from "@/lib/api";
 import { Todo } from '@/lib/api';
 import { useState } from "react";
 
-const TodoItem = ({ todo } : {todo : Todo}) => {
+const TodoItem = ({ todo, onAction } : { todo : Todo; onAction : () => void }) => {
 
   const [saving, setSaving] = useState<boolean>(false);
   
 
   const handleCheckboxChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSaving(true);
     const newStatus = e.target.checked;
     await updateTodoStatus(todo.id, newStatus);
+    await onAction();
+    setSaving(false);
   };
 
   const handleNameSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -19,12 +22,16 @@ const TodoItem = ({ todo } : {todo : Todo}) => {
     const input = e.currentTarget.elements.namedItem("todoName") as HTMLInputElement;
     if (input) {
       await updateTodoName(todo.id, input.value);
-      setSaving(false)
+      onAction();
+      setSaving(false);
     }
   };
 
   const handleDeleteButton = async () => {
+    setSaving(true);
     await deleteTodo(todo.id);
+    onAction();
+    setSaving(false);
   };
 
   return (
